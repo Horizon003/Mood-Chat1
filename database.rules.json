@@ -1,0 +1,33 @@
+{
+  "_comment": "MOODCHAT — Firebase Realtime Database rules (presence, typing, recording, call signaling).",
+  "_dev_mode": "These rules allow open read/write so the Supabase-only client works immediately (DEV/DEMO).",
+  "_production_note": "For production, sign in with a Firebase custom token and tighten each node, e.g. status/$uid '.write': 'auth != null && auth.uid == $uid'.",
+
+  "rules": {
+    ".read": true,
+    ".write": true,
+
+    "status": {
+      "$uid": {
+        ".read": true,
+        ".write": true
+      }
+    },
+    "typing": {
+      "$chatId": {
+        "$uid": { ".read": true, ".write": true }
+      }
+    },
+    "recording": {
+      "$chatId": {
+        "$uid": { ".read": true, ".write": true }
+      }
+    },
+    "calls": {
+      "$callId": {
+        ".read": true,
+        ".write": true
+      }
+    }
+  }
+}
