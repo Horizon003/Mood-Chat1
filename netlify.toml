@@ -1,0 +1,20 @@
+# ============================================================================
+#  MOODCHAT — Netlify configuration
+#  Static single-page site + one serverless function (sendNotification).
+# ============================================================================
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# OneSignal requires its service worker at the site root with the right headers.
+[[headers]]
+  for = "/OneSignalSDKWorker.js"
+  [headers.values]
+    Service-Worker-Allowed = "/"
+    Content-Type = "application/javascript"
+
+# Allow microphone / camera (voice notes + WebRTC calls)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Permissions-Policy = "microphone=(self), camera=(self)"
